@@ -64,8 +64,10 @@ class GlobalState extends ChangeNotifier {
     if (readFromPreviousSettings.isEmpty) {
       selectedKatsuyous = defaultSelectedKatsuyous;
     } else {
-      selectedKatsuyous =
-          readFromPreviousSettings.map((e) => int.parse(e)).toList();
+      selectedKatsuyous = readFromPreviousSettings
+          .map((e) => int.parse(e))
+          .where((e) => e < katsuyouName.length)
+          .toList();
     }
   }
 
@@ -186,7 +188,8 @@ class SettingsPage extends StatelessWidget {
         color: Colors.white,
         padding: EdgeInsets.all(12),
         child: SafeArea(
-          child: Row(
+          child: ListView(
+            shrinkWrap: true,
             children: [
               Expanded(
                 flex: 1,

@@ -11,7 +11,7 @@ const katsuyouName = [
   '可能動詞',
   '受身動詞',
   '使役動詞',
-  '使役受身動詞'
+  '使役受身動詞',
 ];
 
 // root kanji, root yomikata, katsuyou postfix, type
