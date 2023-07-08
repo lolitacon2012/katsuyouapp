@@ -9,7 +9,7 @@ _flutter.loader = null;
 
 (function () {
   "use strict";
-
+  console.log('test')
   const baseUri = ensureTrailingSlash(getBaseURI());
 
   function getBaseURI() {
