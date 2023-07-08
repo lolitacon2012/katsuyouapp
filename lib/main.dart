@@ -190,46 +190,35 @@ class SettingsPage extends StatelessWidget {
         child: SafeArea(
           child: ListView(
             shrinkWrap: true,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: katsuyouName.map((k) {
-                    var isSelected =
-                        selectedKatsuyous.contains(katsuyouName.indexOf(k));
-                    var canNotToggleOff = selectedKatsuyous.length <= 2;
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(k),
-                        Switch(
-                            value: isSelected,
-                            onChanged: (canNotToggleOff && isSelected)
-                                ? null
-                                : ((v) {
-                                    if (!v) {
-                                      appState.setSelectedKatsuyous(
-                                          selectedKatsuyous
-                                              .where((element) =>
-                                                  element !=
-                                                  katsuyouName.indexOf(k))
-                                              .toList());
-                                    } else {
-                                      appState.setSelectedKatsuyous([
-                                        ...selectedKatsuyous,
-                                        katsuyouName.indexOf(k)
-                                      ]);
-                                    }
-                                    appState.reset();
-                                  }))
-                      ],
-                    );
-                  }).toList(),
-                ),
-              ),
-            ],
+            children: katsuyouName.map((k) {
+              var isSelected =
+                  selectedKatsuyous.contains(katsuyouName.indexOf(k));
+              var canNotToggleOff = selectedKatsuyous.length <= 2;
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(k),
+                  Switch(
+                      value: isSelected,
+                      onChanged: (canNotToggleOff && isSelected)
+                          ? null
+                          : ((v) {
+                              if (!v) {
+                                appState.setSelectedKatsuyous(selectedKatsuyous
+                                    .where((element) =>
+                                        element != katsuyouName.indexOf(k))
+                                    .toList());
+                              } else {
+                                appState.setSelectedKatsuyous([
+                                  ...selectedKatsuyous,
+                                  katsuyouName.indexOf(k)
+                                ]);
+                              }
+                              appState.reset();
+                            }))
+                ],
+              );
+            }).toList(),
           ),
         ));
   }
